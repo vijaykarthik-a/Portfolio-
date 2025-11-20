@@ -1,0 +1,227 @@
+.egg-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.egg-wrapper {
+  position: relative;
+  width: 80px;
+  height: 100px;
+}
+
+.egg-shadow {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  filter: blur(8px);
+  animation: shadowPulse 2s ease-in-out infinite;
+}
+
+.egg {
+  position: relative;
+  width: 80px;
+  height: 100px;
+  background: linear-gradient(135deg, #f5f5dc 0%, #e6ddd4 50%, #d4c4a8 100%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 
+    inset -10px -10px 20px rgba(0, 0, 0, 0.1),
+    inset 10px 10px 20px rgba(255, 255, 255, 0.3),
+    0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.egg:hover {
+  box-shadow: 
+    inset -10px -10px 20px rgba(0, 0, 0, 0.15),
+    inset 10px 10px 20px rgba(255, 255, 255, 0.4),
+    0 15px 30px rgba(255, 0, 0, 0.3);
+}
+
+/* Shine effects */
+.shine-1 {
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 25%;
+  height: 35%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(3px);
+  animation: shine 3s ease-in-out infinite;
+}
+
+.shine-2 {
+  position: absolute;
+  top: 25%;
+  right: 25%;
+  width: 15%;
+  height: 20%;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  filter: blur(2px);
+  animation: shine 3s ease-in-out infinite 0.5s;
+}
+
+.shine-3 {
+  position: absolute;
+  bottom: 30%;
+  left: 30%;
+  width: 20%;
+  height: 25%;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  filter: blur(4px);
+  animation: shine 3s ease-in-out infinite 1s;
+}
+
+/* Speckles */
+.speckle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(139, 69, 19, 0.4);
+  border-radius: 50%;
+  animation: speckleFloat 4s ease-in-out infinite;
+}
+
+.speckle:nth-child(odd) {
+  animation-delay: 0.5s;
+}
+
+.speckle:nth-child(even) {
+  animation-delay: 1s;
+}
+
+/* Crack SVGs */
+.crack-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.crack-path {
+  fill: none;
+  stroke: #8b4513;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 3px rgba(139, 69, 19, 0.5));
+}
+
+.crack-1 .crack-path {
+  stroke-width: 2.5;
+}
+
+.crack-2 .crack-path {
+  stroke-width: 2;
+}
+
+.crack-3 .crack-path {
+  stroke-width: 1.5;
+}
+
+.crack-4 .crack-path {
+  stroke-width: 1.5;
+}
+
+/* Message */
+.egg-message {
+  background: rgba(255, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  border-radius: 20px;
+  padding: 8px 16px;
+  color: #ff0000;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.2);
+}
+
+/* Animations */
+@keyframes shadowPulse {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateX(-50%) scale(1.1);
+    opacity: 0.5;
+  }
+}
+
+@keyframes shine {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes speckleFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-2px) scale(1.2);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .egg-container {
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .egg-wrapper {
+    width: 60px;
+    height: 75px;
+  }
+  
+  .egg {
+    width: 60px;
+    height: 75px;
+  }
+  
+  .egg-message {
+    font-size: 10px;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .egg-container {
+    bottom: 15px;
+    right: 15px;
+  }
+  
+  .egg-wrapper {
+    width: 50px;
+    height: 65px;
+  }
+  
+  .egg {
+    width: 50px;
+    height: 65px;
+  }
+}
