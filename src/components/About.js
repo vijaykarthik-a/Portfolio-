@@ -2,19 +2,26 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import './About.css';
 import SecretPage from './SecretPage';
+import CrackableEgg from './CrackableEgg';
 
 function About() {
   const [showSecret, setShowSecret] = useState(false);
+  const [showEgg, setShowEgg] = useState(false);
   const [clickCount, setClickCount] = useState(0);
 
   const handleNameClick = () => {
     const newCount = clickCount + 1;
     setClickCount(newCount);
     
-    if (newCount >= 5) {
-      setShowSecret(true);
+    if (newCount >= 1) {
+      setShowEgg(true);
       setClickCount(0); // Reset counter
     }
+  };
+
+  const handleEggCracked = () => {
+    setShowSecret(true);
+    setShowEgg(false);
   };
 
   return (
@@ -67,6 +74,8 @@ function About() {
           </motion.div>
         </div>
       </section>
+      
+      {showEgg && !showSecret && <CrackableEgg onEggCracked={handleEggCracked} />}
       {showSecret && <SecretPage onClose={() => setShowSecret(false)} />}
     </>
   );
